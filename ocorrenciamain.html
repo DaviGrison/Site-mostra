@@ -113,8 +113,14 @@
       const emergencia = document.getElementById('emergencia').value;
       const descricao = document.getElementById('descricao').value;
 
-      alert(`Ocorrência registrada:\nNecessidade: ${necessidade}\nLocalização: ${localizacao}\nEstado de Emergência: ${emergencia}\nDescrição: ${descricao || 'Nenhuma'}`);
-      document.getElementById('emergencyForm').reset();
+      if (necessidade === 'abrigos') {
+        window.location.href = 'ocorrenciaabrigos.html';
+      } else if (necessidade === 'animais') {
+        window.location.href = 'ocorrenciaanimal.html';
+      } else {
+        alert(`Ocorrência registrada:\nNecessidade: ${necessidade}\nLocalização: ${localizacao}\nEstado de Emergência: ${emergencia}\nDescrição: ${descricao || 'Nenhuma'}`);
+        document.getElementById('mainForm').reset();
+      }
     }
   </script>
 </body>
