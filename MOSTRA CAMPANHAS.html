@@ -4,56 +4,80 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Campanhas e Divulgações</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
+      font-family: 'Inter', sans-serif;
       background-color: #f9f9f9;
       color: #333;
     }
 
-    /* Cabeçalho */
-    header {
-      background-color: #7b2ff7;
+       header {
+      background-color: #754CEC;
       color: white;
-      text-align: center;
-      padding: 20px;
+      padding: 2.5rem 1rem;
       position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
     }
-    header h1 {
-      margin: 0;
-      font-size: 22px;
-      background: #4c1bcf;
-      padding: 10px 25px;
-      border-radius: 30px;
+    .title {
+      background-color: #00008b;
       display: inline-block;
+      padding: 0.5rem 1rem;
+      border-radius: 10px;
+      font-weight: bold;
+      font-size: 2rem;
     }
-
-    /* Botão menu */
-    .top-icons {
+    .subtitle {
+      font-size: 1rem;
+      margin-top: 0.5rem;
+    }
+    .icon-button {
+      width: 24px;
+      height: 24px;
+    }
+    .top-right-buttons {
       position: absolute;
-      right: 20px;
-      top: 20px;
-      font-size: 22px;
-      cursor: pointer;
+      top: 1rem;
+      right: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
     }
-
-    /* Navegação */
+    .top-right-buttons button {
+      background: none;
+      border: none;
+      font-size: 0.5rem;
+      cursor: pointer;
+      padding: 0;
+    }
     nav {
+      background-color: #8d6af5;
       display: flex;
       justify-content: center;
-      gap: 20px;
-      background-color: #9d5df7;
-      padding: 10px;
-      flex-wrap: wrap;
+      gap: 2rem;
+      padding: 0.5rem;
     }
-    nav a {
-      text-decoration: none;
+    .nav-item {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
       color: white;
       font-weight: bold;
-      font-size: 14px;
+      cursor: pointer;
     }
-
+    .nav-item span {
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+    .nav-item img {
+      width: 10px;
+      height: 10px;
+    }
     /* Grid de campanhas */
     .container {
       display: grid;
@@ -102,22 +126,25 @@
   </style>
 </head>
 <body>
-  <!-- Cabeçalho -->
   <header>
-    <h1>CAMPANHAS E DIVULGAÇÕES</h1>
-    <div class="top-icons">☰</div>
+    <div class="title"><strong><em>AJUDE <br> A SERRA GAÚCHA</em></strong></div>
+    <div class="subtitle">Consulte informações sobre oportunidades <br> de voluntariado para seu caso.</div>
+    <div class="top-right-buttons">
+      <button><img src="imagens/search-interface-symbol.png" alt="busca" class="icon-button"></button>
+      <button><img src="imagens/menu.png" alt="menu" class="icon-button"></button>
+      <button><a href="cadastrovoluntarios.html" target="_self" ><img src="imagens/user.png" alt="user" class="icon-button"></button></a>
+      <span>Crie sua conta<br> ou faça login</span>
+    </div>
   </header>
 
-  <!-- Menu de navegação -->
   <nav>
-    <a href="#">Abrigos e Centros</a>
-    <a href="#">Campanhas</a>
-    <a href="#">Voluntários</a>
-    <a href="#">Comunicação</a>
-    <a href="#">Desaparecidos</a>
-    <a href="#">Contatos</a>
+    <div class="nav-item"><span>Página Inicial <a href="paginainicial.html"><img src="imagens/arrow-down-branca.png" alt="seta"></span></div></a>
+    <div class="nav-item"><span>Abrigos e Centros <a href="mostra abrigos prox.html"><img src="imagens/arrow-down-branca.png" alt="seta"></span></div></a>
+    <div class="nav-item"><span>Campanhas <a href="MOSTRA CAMPANHAS.html"><img src="imagens/arrow-down-branca.png" alt="seta"></span></div></a>
+    <div class="nav-item"><span>Voluntários <a href="Mostra Voluntarios.html"><img src="imagens/arrow-down-branca.png" alt="seta"></span></div></a>
+    <div class="nav-item"><span>Ocorrências<a href="ocorrenciamain.html"><img src="imagens/arrow-down-branca.png" alt="seta"></span></div></a>
+    <div class="nav-item"><span>Desaparecidos <a href="mostra desaparecidos 1.html"><img src="imagens/arrow-down-branca.png" alt="seta"></span></div></a>
   </nav>
-
   <!-- Cards de campanhas -->
   <div class="container">
     <div class="card">
