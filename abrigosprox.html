@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lista de Pessoas</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background-color: #f9f9f9;
+      color: #333;
+    }
+
+    header {
+      background-color: #754CEC;
+      color: white;
+      padding: 2.5rem 1rem;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+    .title {
+      background-color: #00008b;
+      display: inline-block;
+      padding: 0.5rem 1rem;
+      border-radius: 10px;
+      font-weight: bold;
+      font-size: 2rem;
+    }
+    .subtitle {
+      font-size: 1rem;
+      margin-top: 0.5rem;
+    }
+    .icon-button {
+      width: 24px;
+      height: 24px;
+    }
+    .top-right-buttons {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .top-right-buttons button {
+      background: none;
+      border: none;
+      font-size: 0.5rem;
+      cursor: pointer;
+      padding: 0;
+    }
+    nav {
+      background-color: #8d6af5;
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      padding: 0.5rem;
+    }
+    nav a {
+      text-decoration: none;
+      color: white;
+      font-weight: bold;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    /* Grid de pessoas */
+    .container {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      padding: 20px 40px;
+    }
+    .card {
+      background: #e6e6e6;
+      border-radius: 8px;
+      padding: 15px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+    .card img {
+      width: 100%;
+      height: 150px;
+      border-radius: 8px;
+      object-fit: cover;
+      margin-bottom: 10px;
+    }
+    .card p {
+      margin: 5px 0;
+      font-size: 14px;
+      text-align: left;
+      width: 100%;
+    }
+    .card button {
+      margin-top: 10px;
+      padding: 8px 12px;
+      background-color: #7b2ff7;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 14px;
+      transition: 0.3s;
+    }
+    .card button:hover {
+      background-color: #5c0fd6;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="title"><strong><em>AJUDE <br> A SERRA GAÚCHA</em></strong></div>
+    <div class="subtitle">Consulte informações sobre oportunidades <br> de voluntariado para seu caso.</div>
+    <div class="top-right-buttons">
+      <button><img src="imagens/search-interface-symbol.png" alt="busca" class="icon-button"></button>
+      <button><img src="imagens/menu.png" alt="menu" class="icon-button"></button>
+      <button><a href="cadastrovoluntarios.html" target="_self" ><img src="imagens/user.png" alt="user" class="icon-button"></button></a>
+      <span>Crie sua conta<br> ou faça login</span>
+    </div>
+  </header>
+
+  <nav>
+    <a href="#" onclick="carregar('conteudos/home.html')">Página Inicial</a>
+    <a href="#" onclick="carregar('conteudos/abrigos.html')">Abrigos e Centros</a>
+    <a href="#" onclick="carregar('conteudos/campanhas.html')">Campanhas</a>
+    <a href="#" onclick="carregar('conteudos/voluntarios.html')">Voluntários</a>
+    <a href="ocorrenciamain.html">Ocorrências</a>
+    <a href="#" onclick="carregar('conteudos/desaparecidos.html')">Desaparecidos</a>
+  </nav>
+  <!-- Cards -->
+  <main id="conteudo">
+    <div class="container">
+    <div class="card">
+      <img src="https://via.placeholder.com/300x150" alt="Imagem">
+      <p><b>Nome:</b></p>
+      <p><b>Telefone:</b></p>
+      <p><b>Endereço:</b></p>
+      <button>Clique aqui para mais informações</button>
+    </div>
+
+    <div class="card">
+      <img src="https://via.placeholder.com/300x150" alt="Imagem">
+      <p><b>Nome:</b></p>
+      <p><b>Telefone:</b></p>
+      <p><b>Endereço:</b></p>
+      <button>Clique aqui para mais informações</button>
+    </div>
+
+    <div class="card">
+      <img src="https://via.placeholder.com/300x150" alt="Imagem">
+      <p><b>Nome:</b></p>
+      <p><b>Telefone:</b></p>
+      <p><b>Endereço:</b></p>
+      <button>Clique aqui para mais informações</button>
+    </div>
+  </div>
+  </main>
+  <script>
+    function carregar(pagina) {
+  fetch(pagina)
+    .then(resp => resp.text())
+    .then(html => {
+      document.getElementById("conteudo").innerHTML = html;
+    })
+    .catch(err => {
+      document.getElementById("conteudo").innerHTML = "<p>Erro ao carregar conteúdo.</p>";
+      console.error(err);
+    });
+  }
+</script>
+</body>
+</html>

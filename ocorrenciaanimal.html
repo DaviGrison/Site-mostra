@@ -144,7 +144,7 @@
           <label><input type="radio" name="condicao" value="outro"> Outro</label>
         </div>
         <div class="form-group" id="outro-condicao" style="display: none;">
-          <input type="text" id="outro-condicao-desc" name="outro-condicao-desc" placeholder="Se for outro, descreva a condição do animal">
+          <input type="text" id="outro-condicao-desc" name="outro-condicao-desc" placeholder="Se for outro, descreva a condição">
         </div>
       </div>
     </div>
@@ -173,7 +173,7 @@
       </div>
     </div>
   </div>
-  <button type="button" onclick="handleSubmit()">Registrar</button>
+  <a href="abrigosprox.html"><button type="button" onclick="handleSubmit()">Registrar</button></a>
 
   <script>
     document.querySelectorAll('input[name="tipo-animal"]').forEach(checkbox => {
@@ -198,11 +198,6 @@
       const localSeguro = document.querySelector('input[name="local-seguro"]:checked')?.value || '';
       const propriedade = document.querySelector('input[name="propriedade"]:checked')?.value || '';
 
-      alert(`Ocorrência registrada:\nTipo de animal: ${tipoAnimal}${tipoAnimal.includes('outro') ? ` (${outroAnimal || 'não especificado'})` : ''}\nQuantidade de animais: ${quantidade}\nCondição do(s) animal(is): ${condicao}${condicao === 'outro' ? ` (${outroCondicao || 'não especificado'})` : ''}\nComportamento: ${comportamento}\nLocal seguro: ${localSeguro}\nPropriedade: ${propriedade}`);
-      document.querySelectorAll('input, textarea').forEach(el => el.value = '');
-      document.querySelectorAll('input[type="checkbox"], input[type="radio"]').forEach(el => el.checked = false);
-      document.getElementById('outro-tipo').style.display = 'none';
-      document.getElementById('outro-condicao').style.display = 'none';
     }
   </script>
 </body>
