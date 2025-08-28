@@ -237,6 +237,7 @@
     }
 
     function addMarkers(positions, markersArray) {
+      if (!map) return;
       positions.forEach(pos => {
         let marker = new google.maps.Marker({
           position: pos,
@@ -323,13 +324,6 @@
           console.error(err);
         });
     }
-
-    // Inicializar eventos dos filtros ao carregar a página
-    window.addEventListener('load', () => {
-      if (document.getElementById('map')) {
-        initMap();
-      }
-    });
   </script>
 </body>
 </html>
