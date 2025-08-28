@@ -119,6 +119,30 @@
       background-color: #A88AFF;
     }
 
+    .radio-group {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 10px;
+      margin-left: 20px;
+    }
+
+    .radio-group label {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 14px;
+    }
+
+    input[type="radio"] {
+      width: 16px;
+      height: 16px;
+      border: 2px solid #A88AFF;
+      background-color: #E0D5FF;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+
     .info-group {
       margin-top: 15px;
     }
@@ -184,8 +208,9 @@
       font-weight: bold;
       font-size: 16px;
     }
-    .input-italico{
-        font-style: italic;
+
+    .input-italico {
+      font-style: italic;
     }
   </style>
 </head>
@@ -229,6 +254,13 @@
             <div class="counter-btn" onclick="increment('banheiros')">+</div>
           </div>
         </div>
+      </div>
+
+      <div class="section-title">Destinação</div>
+      <div class="radio-group">
+        <label><input type="radio" name="destinacao" value="homens"> Homens</label>
+        <label><input type="radio" name="destinacao" value="mulheres"> Mulheres</label>
+        <label><input type="radio" name="destinacao" value="ambos"> Ambos</label>
       </div>
 
       <div class="section-title">Outras comodidades</div>
@@ -340,6 +372,7 @@
         camas: document.getElementById("camas").innerText,
         quartos: document.getElementById("quartos").innerText,
         banheiros: document.getElementById("banheiros").innerText,
+        destinacao: document.querySelector('input[name="destinacao"]:checked')?.value || 'não especificado',
         comodidades: document.getElementById("comodidades").value,
         espaco: document.getElementById("espaco").value,
         destaques: document.getElementById("destaques").value,

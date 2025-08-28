@@ -46,6 +46,17 @@
             color: #000;
             display: block;
             margin-bottom: 10px;
+            margin-right: 20px;
+            min-width: 260px;
+            text-align: left;
+        }
+
+        .form-group .options label {
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            margin-left: 30px; /* Desloca alternativas à direita */
+            margin-bottom: 0.5rem;
         }
 
         .input {
@@ -80,18 +91,29 @@
 </head>
 <body>
     <div class="container">
-        <h1 class="title"><span class="sublinhado">Cada</span>stre seu abrigo</h1>
+        <h1 class="title"><span class="sublinhado">Cada</span>stre seu abrigo emergencial</h1>
         <div class="form-group">
             <label class="label">Capacidade máxima de pessoas</label>
-            <input type="text" class="input" placeholder="Ex: 500 pessoas, 50 famílias...">
+            <div class="options">
+                <label><input type="radio" name="capacidade" value="100-500"> 100-500 pessoas</label>
+                <label><input type="radio" name="capacidade" value="500-1000"> 500-1000 pessoas</label>
+                <label><input type="radio" name="capacidade" value="1000-1500"> 1000-1500 pessoas</label>
+            </div>
         </div>
         <div class="form-group">
             <label class="label">Número de voluntários</label>
-            <input type="text" class="input" placeholder="Número de voluntários estimados">
+            <div class="options">
+                <label><input type="radio" name="voluntarios" value="1-10"> 1-10 voluntários</label>
+                <label><input type="radio" name="voluntarios" value="11-30"> 11-30 voluntários</label>
+                <label><input type="radio" name="voluntarios" value="30"> +30 voluntários</label>
+            </div>
         </div>
         <div class="form-group">
             <label class="label">Acessibilidade</label>
-            <input type="text" class="input" placeholder="É possível atender pessoas com necessidades">
+            <div class="options">
+                <label><input type="radio" name="acessibilidade" value="sim"> Sim</label>
+                <label><input type="radio" name="acessibilidade" value="nao"> Não</label>
+            </div>
         </div>
         <a href="paginainicial.html"><button class="register-btn">Registrar</button></a>
     </div>

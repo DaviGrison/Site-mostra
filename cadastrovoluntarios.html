@@ -15,7 +15,7 @@
       min-height: 100vh;
     }
 
-    .title{
+    .title {
       font-style: italic;
       font-weight: bold;
     }
@@ -59,8 +59,14 @@
       border-radius: 5px;
     }
 
-    input[type="checkbox"] {
+    input[type="checkbox"], input[type="radio"] {
       margin-right: 5px;
+    }
+
+    .radio-group label {
+      display: flex;
+      align-items: center;
+      margin-bottom: 0.5rem;
     }
 
     .profile-pic {
@@ -160,17 +166,35 @@
       </label>
       <input type="file" id="photo-upload" accept="image/*">
 
-      <label for="qualidades">Quais são suas qualidades?</label>
-      <textarea id="qualidades" rows="2" placeholder="Fale sobre suas principais qualidades."></textarea>
+      <div class="form-group radio-group">
+        <label>Quais são suas qualidades?</label>
+        <label><input type="radio" name="qualidades" value="cozinha"> Cozinha</label>
+        <label><input type="radio" name="qualidades" value="faxineiro"> Faxineiro</label>
+        <label><input type="radio" name="qualidades" value="cuidado-animais"> Cuidado com animais</label>
+        <label><input type="radio" name="qualidades" value="outro"> Outro</label>
+      </div>
+      <div class="form-group" id="qualidades-details" style="display: none;">
+        <label for="qualidade-descricao">Descreva sua qualidade</label>
+        <input type="text" id="qualidade-descricao" name="qualidade-descricao" placeholder="Digite sua qualidade">
+      </div>
 
-      <label for="veiculo">Em caso de emergência, você teria algum veículo para disponibilizar para ajudar?</label>
-      <textarea id="veiculo" rows="2" placeholder="Se sim, fale mais sobre ele"></textarea>
+      <div class="form-group radio-group">
+        <label>Em caso de emergência, você teria algum veículo para disponibilizar para ajudar?</label>
+        <label><input type="radio" name="veiculo" value="sim"> Sim</label>
+        <label><input type="radio" name="veiculo" value="nao"> Não</label>
+      </div>
 
-      <label for="comunidade">Você participa de alguma comunidade?</label>
-      <textarea id="comunidade" rows="2" placeholder="Grupos de adoção, Jeeps que possam ajudar levando suprimentos etc..."></textarea>
+      <div class="form-group radio-group">
+        <label>Você participa de alguma comunidade?</label>
+        <label><input type="radio" name="comunidade" value="sim"> Sim</label>
+        <label><input type="radio" name="comunidade" value="nao"> Não</label>
+      </div>
+      <div class="form-group" id="comunidade-details" style="display: none;">
+        <label for="comunidade-descricao">Se sim, qual comunidade</label>
+        <input type="text" id="comunidade-descricao" name="comunidade-descricao" placeholder="Digite a comunidade">
+      </div>
 
       <a href="paginainicial.html"><button class="button">Registrar</button></a>
-      
     </div>
   </div>
 
@@ -195,6 +219,18 @@
         };
         reader.readAsDataURL(file);
       }
+    });
+
+    document.querySelectorAll('input[name="qualidades"]').forEach(radio => {
+      radio.addEventListener('change', () => {
+        document.getElementById('qualidades-details').style.display = radio.value === 'outro' ? 'block' : 'none';
+      });
+    });
+
+    document.querySelectorAll('input[name="comunidade"]').forEach(radio => {
+      radio.addEventListener('change', () => {
+        document.getElementById('comunidade-details').style.display = radio.value === 'sim' ? 'block' : 'none';
+      });
     });
   </script>
 </body>

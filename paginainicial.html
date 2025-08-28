@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Ajude a Serra Gaúcha</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBaPIef727wahxfE-So5Q_4EMBUgeF7PPo&callback=initMap"></script>
   <style>
     body {
       margin: 0;
@@ -63,7 +64,6 @@
       color: white;
       font-weight: bold;
     }
-
     nav a:hover {
       text-decoration: underline;
     }
@@ -117,14 +117,6 @@
       flex-grow: 1;
       height: 500px;
       margin: 0 1rem;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-    #map iframe {
-      width: 100%;
-      height: 100%;
-      border: 0;
     }
     .map-footer {
       background-color: #8d6af5;
@@ -132,6 +124,9 @@
       text-align: center;
       padding: 0.5rem;
       font-weight: bold;
+    }
+    .cinza span{
+      color: #757575;
     }
   </style>
 </head>
@@ -142,13 +137,13 @@
     <div class="top-right-buttons">
       <button><img src="imagens/search-interface-symbol.png" alt="busca" class="icon-button"></button>
       <button><img src="imagens/menu.png" alt="menu" class="icon-button"></button>
-      <button><a href="cadastrovoluntarios.html" target="_self" ><img src="imagens/user.png" alt="user" class="icon-button"></button></a>
+      <button><a href="cadastrovoluntarios.html" target="_self"><img src="imagens/user.png" alt="user" class="icon-button"></a></button>
       <span>Crie sua conta<br> ou faça login</span>
     </div>
   </header>
 
   <nav>
-    <a href="#" onclick="carregar('conteudos/home.html')">Página Inicial</a>
+    <a href="#" onclick="location.reload()">Página Inicial</a>
     <a href="#" onclick="carregar('conteudos/abrigos.html')">Abrigos e Centros</a>
     <a href="#" onclick="carregar('conteudos/campanhas.html')">Campanhas</a>
     <a href="#" onclick="carregar('conteudos/voluntarios.html')">Voluntários</a>
@@ -158,92 +153,183 @@
 
   <main id="conteudo">
     <div class="container">
-    <div class="sidebar-left">
-      <span>Filtrar por cidade</span>
-      <div class="opcao-com-seta">
-        <span>Caxias do Sul</span>
-        <img src="imagens/arrow-down-cinza.png" alt="seta">
+      <div class="sidebar-left">
+        <div class="cinza"><span>Filtrar por cidade</span></div>
+        <div class="opcao-com-seta">
+          <div class="cinza"><span>Caxias do Sul</span></div>
+          <img src="imagens/arrow-down-cinza.png" alt="seta">
+        </div>
+        <div class="cinza"><span>Filtrar por bairro</span></div>
+        <div class="opcao-com-seta">
+          <div class="cinza"><span>Todos</span></div>
+          <img src="imagens/arrow-down-cinza.png" alt="seta">
+        </div>
+        <div class="cinza"><span>Filtrar por endereço</span></div>
+        <div class="opcao-com-seta">
+          <div class="cinza"><span>Todos</span></div>
+          <img src="imagens/arrow-down-cinza.png" alt="seta">
+        </div>
+        <span>Filtrar por abrigo</span>
+        <div class="opcao-com-seta" id="filter-abrigo">
+          <span>Todos</span>
+          <img src="imagens/arrow-down-cinza.png" alt="seta">
+        </div>
+        <div class="cinza"><span>Filtrar por necessidade</span></div>
+        <div class="opcao-com-seta">
+          <div class="cinza"><span>Todos</span></div>
+          <img src="imagens/arrow-down-cinza.png" alt="seta">
+        </div>
+        <span>Filtrar por tipo de abrigo</span>
+        <div class="opcao-com-seta" id="filter-tipo-abrigo">
+          <span>Todos</span>
+          <img src="imagens/arrow-down-cinza.png" alt="seta">
+        </div>
+        <button class="clear-button">Limpar filtros</button>
       </div>
-      <span>Filtrar por bairro</span>
-      <div class="opcao-com-seta">
-        <span>Todos</span>
-        <img src="imagens/arrow-down-cinza.png" alt="seta">
-      </div>
-      <span>Filtrar por endereço</span>
-      <div class="opcao-com-seta">
-        <span>Todos</span>
-        <img src="imagens/arrow-down-cinza.png" alt="seta">
-      </div>
-      <span>Filtrar por abrigo</span>
-      <div class="opcao-com-seta">
-        <span>Todos</span>
-        <img src="imagens/arrow-down-cinza.png" alt="seta">
-      </div>
-      <span>Filtrar por necessidade</span>
-      <div class="opcao-com-seta">
-        <span>Todos</span>
-        <img src="imagens/arrow-down-cinza.png" alt="seta">
-      </div>
-      <span>Filtrar por tipo de abrigo</span>
-      <div class="opcao-com-seta">
-        <span>Todos</span>
-        <img src="imagens/arrow-down-cinza.png" alt="seta">
-      </div>
-      <button class="clear-button">Limpar filtros</button>
-    </div>
 
-    <div id="map">
-      <iframe 
-        src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d111485.3282399713!2d-51.19308182284734!3d-29.167132536399222!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1spt-BR!2sbr!4v1751143724563!5m2!1spt-BR!2sbr"
-        allowfullscreen="" 
-        loading="lazy" 
-        referrerpolicy="no-referrer-when-downgrade">
-      </iframe>
-    </div>
+      <div id="map"></div>
 
-    <div class="sidebar-right">
-      <span>Filtrar por campanha</span>
-      <div class="opcao-com-seta">
-        <span>Todas</span>
-        <img src="imagens/arrow-down-cinza.png" alt="seta">
-      </div>
-      <span>Filtrar por centro de coleta</span>
-      <div class="opcao-com-seta">
-        <span>Todas</span>
-        <img src="imagens/arrow-down-cinza.png" alt="seta">
-      </div>
-      <span>Filtrar por necessidade</span>
-      <div class="opcao-com-seta">
-        <span>Todas</span>
-        <img src="imagens/arrow-down-cinza.png" alt="seta">
-      </div>
-      <span>Tipo de centro de coleta</span>
-      <div class="opcao-com-seta">
-        <span>Todas</span>
-        <img src="imagens/arrow-down-cinza.png" alt="seta">
-      </div>
-      <span>Tipo de arrecadação</span>
-      <div class="opcao-com-seta">
-        <span>Todas</span>
-        <img src="imagens/arrow-down-cinza.png" alt="seta">
+      <div class="sidebar-right">
+        <div class="cinza"><span>Filtrar por campanha</span></div>
+        <div class="opcao-com-seta">
+          <div class="cinza"><span>Todas</span></div>
+          <img src="imagens/arrow-down-cinza.png" alt="seta">
+        </div>
+        <span>Filtrar por centro de animais</span>
+        <div class="opcao-com-seta" id="filter-centro-animais">
+          <span>Todas</span>
+          <img src="imagens/arrow-down-cinza.png" alt="seta">
+        </div>
+        <div class="cinza"><span>Filtrar por necessidade</span></div>
+        <div class="opcao-com-seta">
+          <div class="cinza"><span>Todas</span></div>
+          <img src="imagens/arrow-down-cinza.png" alt="seta">
+        </div>
+        <div class="cinza"><span>Tipo de centro de coleta</span></div>
+        <div class="opcao-com-seta">
+          <div class="cinza"><span>Todas</span></div>
+          <img src="imagens/arrow-down-cinza.png" alt="seta">
+        </div>
+        <div class="cinza"><span>Tipo de arrecadação</span></div>
+        <div class="opcao-com-seta">
+          <div class="cinza"><span>Todas</span></div>
+          <img src="imagens/arrow-down-cinza.png" alt="seta">
+        </div>
       </div>
     </div>
-  </div>
-  <div class="map-footer">Mapa de abrigos e centros de coleta</div>
+    <div class="map-footer">Mapa de abrigos e centros de coleta</div>
   </main>
 
   <script>
+    let map;
+    let markersAbrigo = [];
+    let markersTipoAbrigo = [];
+    let markersCentroAnimais = [];
+
+    function initMap() {
+      if (document.getElementById('map')) {
+        map = new google.maps.Map(document.getElementById('map'), {
+          center: {lat: -29.1678, lng: -51.1794}, // Centro em Caxias do Sul, RS
+          zoom: 13
+        });
+        addFilterEvents(); // Reaplicar eventos dos filtros
+      }
+    }
+
+    function addMarkers(positions, markersArray) {
+      positions.forEach(pos => {
+        let marker = new google.maps.Marker({
+          position: pos,
+          map: map,
+          title: 'Abrigo/Centro'
+        });
+        markersArray.push(marker);
+      });
+    }
+
+    function removeMarkers(markersArray) {
+      markersArray.forEach(m => m.setMap(null));
+      markersArray.length = 0;
+    }
+
+    function addFilterEvents() {
+      const abrigo = document.getElementById('filter-abrigo');
+      if (abrigo) {
+        abrigo.addEventListener('click', () => {
+          if (markersAbrigo.length > 0) {
+            removeMarkers(markersAbrigo);
+          } else {
+            const positions = [
+              {lat: -29.168, lng: -51.179},
+              {lat: -29.160, lng: -51.170}
+            ];
+            addMarkers(positions, markersAbrigo);
+          }
+        });
+      }
+
+      const tipoAbrigo = document.getElementById('filter-tipo-abrigo');
+      if (tipoAbrigo) {
+        tipoAbrigo.addEventListener('click', () => {
+          if (markersTipoAbrigo.length > 0) {
+            removeMarkers(markersTipoAbrigo);
+          } else {
+            const positions = [
+              {lat: -29.170, lng: -51.180},
+              {lat: -29.165, lng: -51.175}
+            ];
+            addMarkers(positions, markersTipoAbrigo);
+          }
+        });
+      }
+
+      const centroAnimais = document.getElementById('filter-centro-animais');
+      if (centroAnimais) {
+        centroAnimais.addEventListener('click', () => {
+          if (markersCentroAnimais.length > 0) {
+            removeMarkers(markersCentroAnimais);
+          } else {
+            const positions = [
+              {lat: -29.175, lng: -51.185},
+              {lat: -29.155, lng: -51.165}
+            ];
+            addMarkers(positions, markersCentroAnimais);
+          }
+        });
+      }
+
+      const clearButton = document.querySelector('.clear-button');
+      if (clearButton) {
+        clearButton.addEventListener('click', () => {
+          removeMarkers(markersAbrigo);
+          removeMarkers(markersTipoAbrigo);
+          removeMarkers(markersCentroAnimais);
+        });
+      }
+    }
+
     function carregar(pagina) {
-  fetch(pagina)
-    .then(resp => resp.text())
-    .then(html => {
-      document.getElementById("conteudo").innerHTML = html;
-    })
-    .catch(err => {
-      document.getElementById("conteudo").innerHTML = "<p>Erro ao carregar conteúdo.</p>";
-      console.error(err);
+      fetch(pagina)
+        .then(resp => resp.text())
+        .then(html => {
+          document.getElementById("conteudo").innerHTML = html;
+          // Reinicializar o mapa se o elemento #map estiver presente
+          if (document.getElementById('map')) {
+            initMap();
+          }
+        })
+        .catch(err => {
+          document.getElementById("conteudo").innerHTML = "<p>Erro ao carregar conteúdo.</p>";
+          console.error(err);
+        });
+    }
+
+    // Inicializar eventos dos filtros ao carregar a página
+    window.addEventListener('load', () => {
+      if (document.getElementById('map')) {
+        initMap();
+      }
     });
-}
   </script>
 </body>
 </html>
